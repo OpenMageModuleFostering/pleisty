@@ -1,28 +1,35 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <config>
-<modules>
-<F5_Pleisty>
-<version>0.1.0</version>
-</F5_Pleisty>
-</modules>
-
-<adminhtml>
-    <layout>
-        <updates>
-            <pleisty>
-                <file>pleisty.xml</file>
-            </pleisty>
-        </updates>
-    </layout>
-</adminhtml>
-<frontend>
-	
-<layout>
-<updates>
-<pleisty>
-<file>pleisty.xml</file>
-</pleisty>
-</updates>
-</layout>
-</frontend>
+	<modules>
+		<F5_Pleisty>
+			<version>2.1.1</version>
+		</F5_Pleisty>
+	</modules>
+	<adminhtml>
+		<layout>
+			<updates>
+				<pleisty>
+					<file>pleisty.xml</file>
+				</pleisty>
+			</updates>
+		</layout>
+	</adminhtml>
+	<frontend>
+		<routers>
+			<pleisty>
+				<use>standard</use>
+				<args>
+					<module>F5_Pleisty</module>
+					<frontName>_pleisty_feeds</frontName>
+				</args>
+			</pleisty>
+		</routers>
+		<layout>
+			<updates>
+				<pleisty>
+					<file>pleisty.xml</file>
+				</pleisty>
+			</updates>
+		</layout>
+	</frontend>
 </config>

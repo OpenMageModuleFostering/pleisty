@@ -3,11 +3,11 @@
     "type": "magento-module",
     "license": "OSL",
     "homepage": "",
-    "description": "Web and Email Personalization and Marketing Automation Platform",
+    "description": "Turn more visitors into customers",
     "authors": [
     {
-        "name": "Cristian Darie",
-        "email": "cristian.darie@pleisty.com"
+        "name": "Pleisty",
+        "email": "support@pleisty.com"
     }
 ],
     "suggest": {

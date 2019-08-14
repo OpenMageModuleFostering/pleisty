@@ -2,9 +2,8 @@
 <config>
 <modules>
 <F5_Pleisty>
-<!-- This activates the module, flip to false to deactivate -->
 <active>true</active>
-<codePool>community</codePool><!-- Remember we talked about code pools -->
+<codePool>community</codePool>
 </F5_Pleisty>
 </modules>
 </config>
