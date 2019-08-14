@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+
+    <default>
+ 
+       <reference name="before_body_end">
+            <!-- ... another sub block ... -->
+          <block type="page/html" name="pleisty_javascript"  template="pleisty/pleisty.phtml" />
+        </reference>
+
+    </default>
+
+</layout>
+
+
+ 

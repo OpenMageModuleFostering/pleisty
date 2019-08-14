@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+    <name>Pleisty</name>
+    <version>1.0.1</version>
+    <stability>stable</stability>
+    <license>OSL</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>Web and Email Personalization and Marketing Automation Platform</summary>
+    <description>Deploy AI-powered product marketing in minutes</description>
+    <notes>First Version</notes>
+    <authors><author><name>Cristian Darie</name><user>cristiandarie</user><email>cristian.darie@pleisty.com</email></author></authors>
+    <date>2016-12-17</date>
+    <time>23:25:55</time>
+    <contents><target name="magecommunity"><dir name="F5"><dir name="Pleisty"><dir name="etc"><file name="adminhtml.xml" hash="752d8ed736a2a0eb3cc9a7e3f3029f0e"/><file name="config.xml" hash="40f0ffafb12c4913179b0fe0cf41991f"/><file name="system.xml" hash="56f06fbd410c9a6596384a0433bac803"/></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="F5_Pleisty.xml" hash="e797718b5f3928eba82e8fa84207328a"/></dir></target><target name="magedesign"><dir name="frontend"><dir name="base"><dir name="default"><dir name="layout"><file name="pleisty.xml" hash="21ef71a2ed057a59802db10628439afd"/></dir><dir name="template"><dir name="pleisty"><file name="pleisty.phtml" hash="0932e062e65bea0eb3d30c5baa2254a3"/></dir></dir></dir></dir></dir><dir name="adminhtml"><dir name="default"><dir name="default"><dir name="layout"><file name="pleisty.xml" hash="87976e4d2d929521b85e115214d855b7"/></dir><dir name="template"><dir name="pleisty"><file name="pleisty.phtml" hash="7e0a62b259cee74f2290387a1030df11"/></dir></dir></dir></dir></dir></target></contents>
+    <compatible/>
+    <dependencies><required><php><min>5.0.0</min><max>7.0.8</max></php></required></dependencies>
+</package>

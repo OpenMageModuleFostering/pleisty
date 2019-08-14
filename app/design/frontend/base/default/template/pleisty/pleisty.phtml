@@ -1,0 +1,223 @@
+<?php 
+$shop_id = Mage::getStoreConfig('tab1/general/shop_id');
+$customer_tracking = Mage::getStoreConfig('tab1/general/customer_tracking');
+$product = Mage::getStoreConfig('tab1/general/product');
+$product_listing = Mage::getStoreConfig('tab1/general/product_listing');
+$shopping_cart = Mage::getStoreConfig('tab1/general/shopping_cart');
+$wishlist_tracking = Mage::getStoreConfig('tab1/general/wishlist_tracking');
+$checkout_process_tracking = Mage::getStoreConfig('tab1/general/checkout_process_tracking');
+$checkout_finalized = Mage::getStoreConfig('tab1/general/checkout_finalized');
+$other_content = Mage::getStoreConfig('tab1/general/other_content');
+
+//echo $checkout_finalized;
+ $page_type=Mage::app()->getFrontController()->getAction()->getFullActionName();
+//echo $page_type;
+switch ($page_type) {
+  case 'catalog_category_view': $pagetype='product_listing';break;
+  case 'cms_page_view': $pagetype='other_content';break;
+  case 'cms_index_index': $pagetype='homepage';break;
+  case 'catalog_product_view': $pagetype='product';break;
+  case 'checkout_cart_index': $pagetype='shopping_cart';break;
+  case 'checkout_onepage_success': $pagetype='checkout_finalized';break;
+  default:$pagetype='';break;
+}
+
+//Base Code Start
+if($shop_id!='') { ?>
+<script type="text/javascript">
+(function() {
+    var site_hash = '<?php echo $shop_id;?>'; 
+    var domain = "pleisty.com";
+    var ldr = document.createElement('script'); 
+    ldr.type = 'text/javascript'; ldr.async = true;
+     
+    ldr.src = document.location.protocol + '//tr-' + 
+              site_hash.substr(2) + '.' + domain + '/tracker/load/' + 
+              site_hash + '/tracker.js?_=' + (+new Date);
+
+     var s = document.getElementsByTagName('script')[0]; 
+     s.parentNode.insertBefore(ldr, s);
+  })();
+</script>
+<script>
+  var _pleistyq = _pleistyq || [];
+  _pleistyq.push(['page_type', '<?php echo $pagetype; ?>']);
+</script>
+<?php } 
+//Base Code End
+//Customer Info Tracking Start.
+?>
+<?php
+  if(Mage::getSingleton('customer/session')->isLoggedIn() && $customer_tracking=='1') {
+  $customerData = Mage::getSingleton('customer/session')->getCustomer();
+  $customer_id = $customerData->getId();
+  $customer = Mage::getSingleton('customer/session')->getCustomer();
+  $customerData = Mage::getModel('customer/customer')->load($customer->getId())->getData();
+  Mage::log($customerData);
+
+  $customer_id=$customerData['entity_id'];
+  $customer_website_id=$customerData['website_id'];
+  $customer_email=$customerData['email'];
+  $customer_is_active=$customerData['is_active'];
+  $customer_firstname =$customerData['firstname'];
+  $customer_lastname =$customerData['lastname'];
+  $customer_middlename = $customerData['middlename'];
+
+?>
+<script>
+  var _pleistyq = _pleistyq || [];
+  _pleistyq.push(['customer_id','<?php echo $customer_id;?>']);
+  _pleistyq.push(['customer_logged', 'true']);
+  var _pleistyq = _pleistyq || [];
+    _pleistyq.push(["custom_event","identify",{
+    "customer_id": "<?php echo $customer_id ;?>", 
+    "email": "<?php echo $customer_email ;?>",
+    "first_name":  "<?php echo $customer_firstname;?>", 
+    "last_name":  "<?php echo $customer_lastname ;?>",
+    "name":  "<?php echo $customer_firstname.' '.$customer_lastname;?>",
+   "is_active": "<?php echo $customer_is_active;?>", 
+    }]);
+</script>
+
+<?php } else { ?>
+
+<script>
+var _pleistyq = _pleistyq || [];
+_pleistyq.push(['customer_logged', 'false']);
+</script>
+
+<?php } 
+//Customer Info Tracking End.
+?>
+
+<?php
+//Cart Info Tracking Start.
+  
+  if($shopping_cart=='1' && $page_type == 'checkout_cart_index') {
+    $items = Mage::getSingleton('checkout/session')->getQuote()->getAllItems();
+   if(count($items))
+   {
+?>
+
+<script>
+  var _pleistyq = _pleistyq || [];
+  _pleistyq.push(['cart', [
+  <?php      
+      foreach($items as $item) {
+        echo "{";
+        $my_product = Mage::getModel('catalog/product')->load($item->getProductId()); 
+        echo "'url': '".$my_product->getProductUrl()."',";
+        echo "'item_id': '".$item->getProductId()."',";
+        echo "'qty': '".$item->getQty()."',";
+        echo "'price': '".$item->getPrice()."'";
+        echo "},";      
+      }
+  ?>
+]]);
+</script>
+
+<?php } else { ?>
+
+<script>
+  var _pleistyq = _pleistyq || [];
+    _pleistyq.push(['cart', []]);
+</script>
+
+<?php } }
+//Cart Info Tracking End.
+//Product Info Tracking Start.
+if($page_type == 'catalog_product_view' && $product=='1') {
+?>
+
+<script>
+  var _pleistyq = _pleistyq || [];
+  _pleistyq.push(['product_id', '<?php echo Mage::registry('current_product')->getId(); ?>']);
+</script>
+
+<?php } 
+
+//Product Info Tracking End. 
+
+//Category Info Tracking Start.
+if($page_type == 'catalog_category_view' && $product_listing=='1') {
+?>
+
+<script>
+  var _pleistyq = _pleistyq || [];
+  _pleistyq.push(['cat', '<?php echo Mage::registry('current_category')->getName(); ?>']);
+</script>
+
+<?php } //Category Info Tracking Start. 
+
+if($page_type == 'wishlist_index_index' && $wishlist_tracking=='1') {
+?>
+
+<?php
+//Wishlist Info Tracking End. 
+  $customer = Mage::getSingleton('customer/session')->getCustomer();
+  if($customer->getId()) {
+  $wishlist = Mage::getModel('wishlist/wishlist')->loadByCustomer($customer, true);
+  $wishListItemCollection = $wishlist->getItemCollection();
+?>
+
+<script>
+  _pleistyq.push(['wishlist',{
+    'wishlist_id': 'wishlist', // An identifier for the wishlist, ex. "Favorites"
+    'items': 
+    [
+     <?php      
+      foreach($wishListItemCollection as $item) {
+        echo "{";
+        $my_product = Mage::getModel('catalog/product')->load($item->getProductId()); 
+        echo "'url': '".$my_product->getProductUrl()."',";
+        echo "'item_id': '".$item->getProductId()."',";
+        echo "'qty': '".$item->getQty()."',";
+        echo "'price': '".$item->getPrice()."'";
+        echo "},";      
+          }
+      ?>
+    ]
+  }]);
+</script>
+<?php } ?>
+<?php } //Wishlist Info Tracking End.  ?>
+
+<?php
+if($page_type=='checkout_onepage_success' && $checkout_finalized=='1') {
+
+    $_customerId = Mage::getSingleton('customer/session')->getCustomerId();
+    $lastOrderId = Mage::getSingleton('checkout/session')->getLastOrderId();
+    $order = Mage::getSingleton('sales/order'); 
+    $order->load($lastOrderId);
+    $_totalData =$order->getData(); 
+    $_sub = $_totalData['subtotal'];
+    $_order   = $this->getOrder();
+    $allitems = $order->getAllItems();
+?>
+<script>
+
+  // Please add this script to your checkout-finalized pages
+  var _pleistyq = _pleistyq || [];
+  _pleistyq.push(['checkout_finalized',{
+    'transaction_id': '<?php echo $order->getIncrementId(); ?>', // Transaction ID
+    'total': '<?php echo $_sub; ?>', // Total amount of the finalized transaction
+    'items': 
+    [
+      <?php      
+      foreach($allitems as $item) {
+        echo "{";
+        $my_product = Mage::getModel('catalog/product')->load($item->getProductId()); 
+        echo "'url': '".$my_product->getProductUrl()."',";
+        echo "'item_id': '".$item->getProductId()."',";
+        echo "'qty': '".$item->getQty()."',";
+        echo "'price': '".$item->getPrice()."'";
+        echo "},";      
+          }
+      ?>
+    ]
+  }]);
+</script>
+<?php } 
+//Checkout Finalized Info Tracking End. 
+?>
+

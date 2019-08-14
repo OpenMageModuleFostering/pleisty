@@ -1,0 +1,16 @@
+{
+    "name": "OpenMageModuleFostering/Pleisty",
+    "type": "magento-module",
+    "license": "OSL",
+    "homepage": "",
+    "description": "Web and Email Personalization and Marketing Automation Platform",
+    "authors": [
+    {
+        "name": "Cristian Darie",
+        "email": "cristian.darie@pleisty.com"
+    }
+],
+    "suggest": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}

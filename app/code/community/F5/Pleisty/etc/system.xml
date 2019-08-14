@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<config>
+      <tabs>
+        <tracker>
+            <label>Pleisty</label>
+          
+        </tracker>
+      </tabs>
+      <sections>
+        <tab1  translate="label">                    
+        <label>Tracker Setup</label>
+        <tab>tracker</tab>
+        <frontend_type>text</frontend_type>
+        <sort_order>0</sort_order>
+        <show_in_default>1</show_in_default>
+        <show_in_website>1</show_in_website>
+        <show_in_store>1</show_in_store>            
+                    <groups>
+
+                    	 <general translate="label">
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                  <shop_id translate="label">
+                            <label>Shop ID</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                         <show_in_website>1</show_in_website>
+                         
+                  </shop_id>
+                     <customer_tracking translate="label">
+                            <label>Customer Tracking</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                       
+                           
+                          </customer_tracking >
+                            <product  translate="label">
+                            <label>Product Tracking</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                       <show_in_website>1</show_in_website>
+                         
+                          </product >
+                     
+                          <product_listing  translate="label">
+                            <label>Product Listing</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                           <show_in_website>1</show_in_website>
+                     
+                          </product_listing >
+
+                            <shopping_cart   translate="label">
+                            <label>Shopping Cart</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                          <show_in_website>1</show_in_website>
+                           
+                          </shopping_cart  >
+                          <wishlist_tracking   translate="label">
+                            <label>Wishlist Tracking</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                           <show_in_website>1</show_in_website>
+                         
+                          </wishlist_tracking>
+                           <!-- <checkout_process_tracking   translate="label">
+                            <label>Checkout Process Tracking</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                          </checkout_process_tracking > -->
+                        
+                            <checkout_finalized  translate="label">
+                            <label>Checkout Finalized Tracking</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                         <show_in_website>1</show_in_website>
+                          
+                          </checkout_finalized>
+                          <!--
+                            <pseudo_checkout  translate="label">
+                            <label>Pseudo Checkout   </label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                          </pseudo_checkout> -->
+
+                            <other_content  translate="label">
+                            <label>Other Content </label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                          
+                          </other_content>
+                           </fields>
+               
+                </general>
+
+                  
+                    </groups>
+        </tab1>
+             
+      </sections>
+</config>
