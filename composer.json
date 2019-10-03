@@ -1,16 +1,19 @@
 {
-    "name": "OpenMageModuleFostering/Pleisty",
+    "name": "OpenMageModuleFostering\/Pleisty",
     "type": "magento-module",
     "license": "OSL",
     "homepage": "",
     "description": "Turn more visitors into customers",
     "authors": [
-    {
-        "name": "Pleisty",
-        "email": "support@pleisty.com"
-    }
-],
+        {
+            "name": "Pleisty",
+            "email": "support@pleisty.com"
+        }
+    ],
     "suggest": {
-        "magento-hackathon/magento-composer-installer": "*"
-    }
+        "magento-hackathon\/magento-composer-installer": "*"
+    },
+    "keywords": [
+        "openmage-module"
+    ]
 }
